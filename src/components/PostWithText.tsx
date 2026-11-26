@@ -1,13 +1,13 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
 
 import { colors } from '@/constants/colors';
-import type { Post } from '@/types/profile';
+import type { TextPost } from '@/types/posts';
 
-type PostCardProps = {
-  post: Post;
+type Props = {
+  post: TextPost;
 };
 
-export function PostCard({ post }: PostCardProps) {
+export function PostWithText({ post }: Props) {
   return (
     <View style={styles.card}>
       <View style={styles.authorRow}>
@@ -18,9 +18,10 @@ export function PostCard({ post }: PostCardProps) {
         )}
         <View>
           <Text style={styles.authorName}>{post.authorName}</Text>
+          <Text style={styles.organizationName}>{post.organizationName}</Text>
+          <Text style={styles.publishedDate}>{post.date}</Text>
         </View>
       </View>
-
       <Text style={styles.text}>{post.text}</Text>
     </View>
   );
@@ -49,23 +50,17 @@ const styles = StyleSheet.create({
   authorName: {
     fontSize: 18,
   },
-  authorUsername: {
-    fontSize: 16,
+  organizationName: {
+    fontSize: 14,
     color: colors.apples_tråkiga_standardblå,
+  },
+  publishedDate: {
+    fontSize: 14,
+    color: colors.supersvart,
+    opacity: 0.6,
   },
   text: {
     fontSize: 16,
     marginTop: 8,
-  },
-  metaRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 16,
-    marginTop: 24,
-  },
-  metaBold: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: colors.supersvart,
   },
 });

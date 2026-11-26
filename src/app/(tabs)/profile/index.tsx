@@ -1,8 +1,9 @@
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { PostCard } from '@/components/PostWithOnlyText';
-import type { Post, Profile } from '@/types/profile';
+import { PostRenderer } from '@/components/PostRenderer';
 import { colors } from '@/constants/colors';
+import type { Post } from '@/types/posts';
+import type { Profile } from '@/types/profile';
 
 // Placeholder. Ersätt med funktion som hämtar från databasen sen
 const PLACEHOLDER_PROFILE: Profile = {
@@ -17,20 +18,24 @@ const PLACEHOLDER_PROFILE: Profile = {
 const PLACEHOLDER_POSTS: Post[] = [
   {
     id: '1',
+    type: 'text',
     authorName: 'Namn Efternamn',
+    organizationName: 'Ensamhetsföreningen',
     authorAvatarUrl: null,
     text: 'Jag vill ha sällskap, kom och säg hej',
-    date: '24 November',
-    time: '00:00 - 23:00',
-    location: 'Plats',
+    date: '03 Nov. 2026',
   },
+
   {
     id: '2',
+    type: 'event',
     authorName: 'Namn Efternamn',
+    organizationName: 'Ensamhetsföreningen',
     authorAvatarUrl: null,
     text: 'Snälla det är inte försent än',
-    date: '13 December',
+    date: '03 Nov. 2026',
     time: '12:00 - 16:00',
+    eventDate: '12 Januari',
     location: 'Plats',
   },
 ];
@@ -104,7 +109,7 @@ export default function ProfileScreen() {
         </Pressable>
       </View>
       {posts.map((post) => (
-        <PostCard key={post.id} post={post} />
+        <PostRenderer key={post.id} post={post} />
       ))}
     </ScrollView>
   );
